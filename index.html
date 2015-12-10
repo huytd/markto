@@ -1,0 +1,36 @@
+<html>
+    <meta charset="UTF-8">
+    <head>
+        <title>Markto</title>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="saver" class="save-indicator fa fa-floppy-o"></div>
+        <button id="btnEdit" class="fa fa-pencil"></button>
+        <button id="btnPreview" class="fa fa-eye"></button>
+        <div class="card" id="editor-panel">
+            <textarea id="editor"># Welcome to Markto
+**Markto** is an interactive _markdown_ editor that able to:
+- Editing in Markdown
+- Quick preview
+- Replace your favorite todo list apps
+- Keep your idea in your eyes on your desktop
+
+To start editing, click the <i class="fa fa-pencil"></i> button in the bottom right corner.
+
+To quickly switch between <i class="fa fa-pencil"></i> mode and <i class="fa fa-eye"></i> mode, just press **⌘** + **E**
+
+Press **⌘** + **S** to save your note.
+
+**Markto** come with built-in **Font Awesome** support, so you can insert any icon you want in your note.
+
+To quit **Markto** (pls don't!!!), press **⌘** + **Q**.
+</textarea>
+        </div>
+        <div class="card" id="preview">
+        </div>
+        <script src="controller.js"></script>
+    </body>
+<html>

@@ -1,0 +1,91 @@
+* {
+    font-family: "Raleway";
+}
+
+html, body {
+    width: 100%; height: 100%;
+    margin: 0; padding: 0;
+    overflow: hidden;
+    position: relative;
+    font-size: 16px;
+}
+
+.save-indicator {
+    width: 48px; height: 48px;
+    background: #3498db;
+    border-radius: 24px;
+    border: none;
+    color: #FFF;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: 999;
+    bottom: 20px; left: 20px;
+    outline: none;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    opacity: 0;
+}
+
+@-webkit-keyframes flashAnim {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.save-indicator.anim {
+    animation: flashAnim 1s;
+}
+
+button {
+    width: 48px; height: 48px;
+    background: #FAFAFA;
+    border-radius: 24px;
+    border: none;
+    color: #888;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: 999;
+    bottom: 20px; right: 20px;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.3;
+    display: none;
+}
+
+button:hover {
+    transform: rotate(360deg);
+    background: #718c00;
+    color: #FFF;
+    opacity: 1;
+}
+
+#btnPreview {
+    display: block;
+}
+
+#btnEdit {
+    display: none;
+}
+
+.card {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+}
+
+.card#preview {
+    padding: 20px;
+    display: none;
+    box-sizing: border-box;
+}
+
+.card textarea {
+    box-sizing: border-box;
+    width: 100%; height: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    line-height: 26px;
+    font-size: 16px;
+}
