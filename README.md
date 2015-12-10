@@ -1,4 +1,7 @@
 # Welcome to Markto
+
+![](screenshot.png)
+
 **Markto** is an interactive _markdown_ editor that able to:
 - Editing in Markdown
 - Quick preview
