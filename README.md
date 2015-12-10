@@ -1,6 +1,6 @@
 # Welcome to Markto
 
-![](screenshot.png)
+![](https://media.giphy.com/media/bs8VRG39MAh56/giphy.gif)
 
 **Markto** is an interactive _markdown_ editor that able to:
 - Editing in Markdown
