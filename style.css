@@ -159,6 +159,27 @@ button:hover {
     text-decoration: line-through;
 }
 
+.card#preview table {
+    border: none;
+    background: #FAFAFA;
+    padding: 5px;
+}
+
+.card#preview table thead {
+    background: #EEE;
+}
+
+.card#preview table thead th {
+    padding: 3px;
+    padding-left: 8px; padding-right: 8px;
+    margin: 5px;
+}
+
+.card#preview table th, .card#preview table td {
+    margin: 5px;
+    padding: 3px;
+}
+
 #editor-panel {
     position: relative;
 }
@@ -248,4 +269,8 @@ button:hover {
 
 .hljs-horizontal_rule {
     opacity: 0.5;
+}
+
+.hljs-link_label, .hljs-link_url {
+    color: #2980b9;
 }
