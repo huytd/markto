@@ -28,12 +28,14 @@ $('#editor').addEventListener('input', function(e){
     codeHighlight($('#editor').value + newChar);
 }, false);
 
-function save() {
+function save(noDisplayIndicator) {
     fs.writeFile(__dirname + '/saved.md', $('#editor').value, function(err){ });
-    $("#saver").classList.add('anim');
-    setTimeout(function(){
-        $("#saver").classList.remove('anim');
-    }, 1000);
+    if (!noDisplayIndicator) {
+        $("#saver").classList.add('anim');
+        setTimeout(function(){
+            $("#saver").classList.remove('anim');
+        }, 1000);
+    }
 }
 
 function load() {
@@ -93,6 +95,7 @@ function check(e, yes) {
         editor.value = arr.join('');
     }
 
+    save(true);
     console.log($('#editor').value);
 }
 
