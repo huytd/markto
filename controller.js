@@ -12,7 +12,7 @@ marked.setOptions({
 });
 
 function save() {
-    fs.writeFile('./saved.md', document.getElementById('editor').value, function(err){ });
+    fs.writeFile(__dirname + '/saved.md', document.getElementById('editor').value, function(err){ });
     document.getElementById("saver").classList.add('anim');
     setTimeout(function(){
         document.getElementById("saver").classList.remove('anim');
@@ -20,7 +20,7 @@ function save() {
 }
 
 function load() {
-    fs.readFile('./saved.md', 'utf-8', function(err, content){
+    fs.readFile(__dirname + '/saved.md', 'utf-8', function(err, content){
         if (!err) {
             console.log('loaded');
             if (content.length > 0) {
