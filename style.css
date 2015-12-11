@@ -240,3 +240,8 @@ button:hover {
 .hljs-emphasis {
     font-style: italic;
 }
+
+.hljs-blockquote {
+    opacity: 0.8;
+    font-style: italic;
+}

@@ -124,6 +124,7 @@ function editMode() {
     $('#editor-panel').style.display = 'block';
     currentEditMode = true;
     codeHighlight($('#editor').value);
+    $('#editor').focus();
 }
 
 $('#btnPreview').addEventListener('click', function(){
