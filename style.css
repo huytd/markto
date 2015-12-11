@@ -245,3 +245,7 @@ button:hover {
     opacity: 0.8;
     font-style: italic;
 }
+
+.hljs-horizontal_rule {
+    opacity: 0.5;
+}

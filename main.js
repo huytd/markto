@@ -13,7 +13,7 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 640, height: 480, resizable: false, frame: false });
+  mainWindow = new BrowserWindow({width: 640, height: 480, resizable: true, frame: false });
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
