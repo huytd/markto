@@ -1,5 +1,7 @@
 var marked = require('./marked.js');
 var fs = require('fs');
+var $ = function(query) { return document.querySelector(query); };
+
 var isCmd = false;
 var currentEditMode = false;
 var checkData = {};
@@ -11,11 +13,26 @@ marked.setOptions({
   }
 });
 
+function codeHighlight(value) {
+    var codeHighlight = hljs.highlight('markdown', value);
+    $(".editor-output").innerHTML = codeHighlight.value;
+}
+
+$('#editor').addEventListener('scroll', function(){
+    $('.editor-output').scrollTop = $('#editor').scrollTop;
+});
+
+$('#editor').addEventListener('input', function(e){
+    var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
+    var newChar = String.fromCharCode(charCode);
+    codeHighlight($('#editor').value + newChar);
+}, false);
+
 function save() {
-    fs.writeFile(__dirname + '/saved.md', document.getElementById('editor').value, function(err){ });
-    document.getElementById("saver").classList.add('anim');
+    fs.writeFile(__dirname + '/saved.md', $('#editor').value, function(err){ });
+    $("#saver").classList.add('anim');
     setTimeout(function(){
-        document.getElementById("saver").classList.remove('anim');
+        $("#saver").classList.remove('anim');
     }, 1000);
 }
 
@@ -24,8 +41,9 @@ function load() {
         if (!err) {
             console.log('loaded');
             if (content.length > 0) {
-                document.getElementById('editor').value = content;
-                document.getElementById('preview').innerHTML = marked(document.getElementById('editor').value);
+                $('#editor').value = content;
+                $('#preview').innerHTML = marked($('#editor').value);
+                codeHighlight($('#editor').value);
             }
         } else {
             console.log(err);
@@ -58,7 +76,7 @@ function enableTab(id) {
 
 function check(e, yes) {
     var pos = e.getAttribute('index');
-    var editor = document.querySelector('#editor');
+    var editor = $('#editor');
 
     if (e.classList.contains('done')) {
         e.classList.remove('done');
@@ -75,11 +93,11 @@ function check(e, yes) {
         editor.value = arr.join('');
     }
 
-    console.log(document.getElementById('editor').value);
+    console.log($('#editor').value);
 }
 
 function previewMode() {
-    document.getElementById('preview').innerHTML = marked(document.getElementById('editor').value);
+    $('#preview').innerHTML = marked($('#editor').value);
     setTimeout(function(){
         var liList = document.querySelectorAll("li");
         for (var i = 0; i < liList.length; i++) {
@@ -89,30 +107,31 @@ function previewMode() {
             });
         }
     }, 300);
-    document.getElementById('btnPreview').style.display = 'none';
-    document.getElementById('editor-panel').style.display = 'none';
-    document.getElementById('btnEdit').style.display = 'block';
-    document.getElementById('preview').style.display = 'block';
+    $('#btnPreview').style.display = 'none';
+    $('#editor-panel').style.display = 'none';
+    $('#btnEdit').style.display = 'block';
+    $('#preview').style.display = 'block';
     currentEditMode = false;
 }
 
 function editMode() {
-    document.getElementById('btnEdit').style.display = 'none';
-    document.getElementById('btnPreview').style.display = 'block';
-    document.getElementById('preview').style.display = 'none';
-    document.getElementById('editor-panel').style.display = 'block';
+    $('#btnEdit').style.display = 'none';
+    $('#btnPreview').style.display = 'block';
+    $('#preview').style.display = 'none';
+    $('#editor-panel').style.display = 'block';
     currentEditMode = true;
+    codeHighlight($('#editor').value);
 }
 
-document.getElementById('btnPreview').addEventListener('click', function(){
+$('#btnPreview').addEventListener('click', function(){
     previewMode();
 });
 
-document.getElementById('btnEdit').addEventListener('click', function(){
+$('#btnEdit').addEventListener('click', function(){
     editMode();
 });
 
-document.getElementById('editor').addEventListener('keyup', function(e){
+$('#editor').addEventListener('keyup', function(e){
     isCmd = false;
 });
 
@@ -132,3 +151,5 @@ document.addEventListener('keydown', function(e){
 load();
 enableTab('editor');
 previewMode();
+
+/* syntax highlight */

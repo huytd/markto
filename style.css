@@ -81,23 +81,9 @@ button:hover {
     box-sizing: border-box;
 }
 
-.card textarea {
-    box-sizing: border-box;
-    width: 100%; height: 100%;
-    padding: 20px;
-    border: none;
-    outline: none;
-    line-height: 26px;
-    font-size: 14px;
-    font-family: "Lucida Console", Monaco, monospace;
-        -moz-tab-size: 4;
-        -o-tab-size: 4;
-        tab-size: 4;
-}
-
 /* Special formats */
 
-.card code {
+.card#preview code {
     border-radius: 3px;
     border: none;
     background: #F3F3F3;
@@ -110,20 +96,20 @@ button:hover {
     color: #c82829;
 }
 
-.card pre {
+.card#preview pre {
     background: #292929;
     padding: 10px;
     border-radius: 5px;
     border: none;
 }
 
-.card pre code {
+.card#preview pre code {
     background: transparent;
     color: #FFF;
     padding: 0;
 }
 
-.card pre code, .card pre code * {
+.card#preview pre code, .card#preview pre code * {
     font-family: "Lucida Console", Monaco, monospace !important;
         -moz-tab-size: 4;
         -o-tab-size: 4;
@@ -131,25 +117,25 @@ button:hover {
     font-size: 13px;
 }
 
-.card blockquote {
+.card#preview blockquote {
     border-left: 3px solid #DDD;
     background: #EFEFEF;
     margin: 0; padding: 10px;
 }
 
-.card ul {
+.card#preview ul {
     list-style: none;
     margin-left: 0;
     padding-left: 10px;
 }
 
-.card ul li {
+.card#preview ul li {
     margin: 5px;
     padding: 5px;
     cursor: pointer;
 }
 
-.card ul li item::before {
+.card#preview ul li item::before {
     content: " ";
     margin: 0; padding: 0;
     margin-right: 10px;
@@ -163,12 +149,94 @@ button:hover {
     transition: all 0.5s;
 }
 
-.card ul li item.done::before {
+.card#preview ul li item.done::before {
     border-color: #718c00;
     background: #b5bd68;
 }
 
-.card ul li item.done {
+.card#preview ul li item.done {
     color: #CCC;
     text-decoration: line-through;
+}
+
+#editor-panel {
+    position: relative;
+}
+
+.card textarea {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%; height: 100%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    line-height: 26px;
+    font-size: 14px;
+    font-family: "Lucida Console", Monaco, monospace;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+    color: #999;
+    white-space:pre-wrap;
+	word-wrap: break-word;
+    resize: none;
+    -webkit-text-fill-color: transparent;
+}
+
+.card textarea::-webkit-input-placeholder {
+    -webkit-text-fill-color: initial;
+}
+
+.editor-output {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 2;
+    box-sizing: border-box;
+    width: 100%; height: 100%;
+    padding: 20px; margin: 0;
+    border: none;
+    outline: none;
+    line-height: 26px;
+    font-size: 14px;
+    font-family: "Lucida Console", Monaco, monospace;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+    pointer-events: none;
+    white-space:pre-wrap;
+	word-wrap: break-word;
+    overflow-y: auto;
+    color: #444;
+}
+
+.editor-output * {
+    font-size: 14px;
+    font-family: "Lucida Console", Monaco, monospace;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+}
+
+.hljs-header {
+    font-weight: bold;
+    color: #c0392b !important;
+}
+
+.hljs-bullet {
+    color: #d35400;
+}
+
+.hljs-strong {
+    font-weight: bold;
+    color: #000;
+}
+
+.hljs-code {
+    color: #8e44ad;
+}
+
+.hljs-emphasis {
+    font-style: italic;
 }
