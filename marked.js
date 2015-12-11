@@ -6,6 +6,8 @@
 
 ;(function() {
 
+var baseSrc = "";
+
 /**
  * Block-Level Grammar
  */
@@ -301,8 +303,10 @@ Lexer.prototype.token = function(src, top, bq) {
 
         // Remove the list item's bullet
         // so it is seen as the next token.
+        var pos = baseSrc.indexOf(item);
         space = item.length;
-        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
+        item = item.replace(/^ *([*-]|\d+\.) +/, '<item index="' + pos + '" class="undone">');
+        item = item.replace(/^ *([*+]|\d+\.) +/, '<item index="' + pos + '" class="done">');
 
         // Outdent whatever the
         // list item contains. Hacky.
@@ -1144,6 +1148,12 @@ function merge(obj) {
  */
 
 function marked(src, opt, callback) {
+  baseSrc = "";
+  for (var i = 0; i < src.length; i++) {
+      baseSrc += src[i];
+  }
+  console.log("src", baseSrc);
+
   if (callback || typeof opt === 'function') {
     if (!callback) {
       callback = opt;

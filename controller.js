@@ -1,7 +1,15 @@
-var marked = require('marked');
+var marked = require('./marked.js');
 var fs = require('fs');
 var isCmd = false;
 var currentEditMode = false;
+var checkData = {};
+
+hljs.initHighlightingOnLoad();
+marked.setOptions({
+  highlight: function(code) {
+    return hljs.highlightAuto(code).value;
+  }
+});
 
 function save() {
     fs.writeFile('./saved.md', document.getElementById('editor').value, function(err){ });
@@ -48,8 +56,39 @@ function enableTab(id) {
     };
 }
 
+function check(e, yes) {
+    var pos = e.getAttribute('index');
+    var editor = document.querySelector('#editor');
+
+    if (e.classList.contains('done')) {
+        e.classList.remove('done');
+        e.classList.add('undone');
+        var arr = editor.value.split('');
+        arr[pos] = '-';
+        editor.value = arr.join('');
+    }
+    else if (e.classList.contains('undone')) {
+        e.classList.remove('undone');
+        e.classList.add('done');
+        var arr = editor.value.split('');
+        arr[pos] = '+';
+        editor.value = arr.join('');
+    }
+
+    console.log(document.getElementById('editor').value);
+}
+
 function previewMode() {
     document.getElementById('preview').innerHTML = marked(document.getElementById('editor').value);
+    setTimeout(function(){
+        var liList = document.querySelectorAll("li");
+        for (var i = 0; i < liList.length; i++) {
+            liList[i].addEventListener('click', function(e){
+                var item = e.target;
+                check(item);
+            });
+        }
+    }, 300);
     document.getElementById('btnPreview').style.display = 'none';
     document.getElementById('editor-panel').style.display = 'none';
     document.getElementById('btnEdit').style.display = 'block';
